@@ -1,0 +1,96 @@
+//IMPLEMENTATION OF QUEUE using array (GLOBALLY)
+
+#include<stdio.h>
+#define N 5
+int queue[N];
+int rear=-1;
+int front=-1;
+
+void enqueue(int x)
+{
+    if(rear==N-1)
+    {
+        printf("QUEUE IS FULL !!! \n");
+    }
+    else if(front==-1 && rear==-1) // for one ELEMENT present in queue
+    {
+        front=rear=0;
+        queue[rear]=x;
+    }
+    else
+    {
+        rear++;
+        queue[rear]=x;
+    }
+}
+
+void dequeue()
+{
+    if(front==-1 && rear==-1)
+    {
+        printf("QUEUE IS EMPTY !!!\n");
+    }
+    else if(front==rear)                //for one element in queue
+    {
+        front=rear=-1;
+    }
+    else
+    {
+        printf("%d",queue[front]);
+        front++;
+    }
+}
+void peek()
+{
+    if(front==-1 && rear==-1)
+    {
+        printf("QUEUE IS EMPTY !!!\n");
+    }
+    else
+    {
+        printf("%d ",queue[front]);
+    }
+}
+void display()
+{
+    if(front==-1 && rear==-1)
+    {
+        printf("QUEUE IS EMPTY !!!\n");
+    }
+    else
+    {
+        for(int i=front;i<rear+1;i++)    // (rear+1) for updation to front
+        {
+            printf("%d ",queue[i]);      
+        }
+    }
+}
+int main()
+{
+    int ch,n;
+    do
+    {   printf("ENTER THE CHOICE -\n1-ENQUEUE \n2-DEQUEUE \n3-PEEK \n4-DISPLAY \n0-EXIT\n");
+        printf("enter the data -");
+        scanf("%d",&ch); 
+        switch(ch)
+        {
+            case 1:
+             printf("ENTER THE ELEMENT IN QUEUE - ");
+             scanf("%d",&n);
+             enqueue(n);
+             break;
+            case 2: dequeue();
+             break;
+            case 3: peek();
+             break;
+            case 4: display();
+             break;
+            case 0:
+             printf("EXITING...!!!");
+             break;
+            default: printf("INVALID CHOICE !!!");
+             break;
+        }
+    }while(ch!=0);
+    return 0;
+}
